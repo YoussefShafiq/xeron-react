@@ -34,10 +34,10 @@ export default function PortfolioCard({ item, variant = 'default' }) {
                         {item.title}
                     </h3>
                     <p className="type-card-overlay-desc">
-                        {item.description}
+                        {item.subtitle}
                     </p>
                     <div className={badgeClass}>
-                        {(item.tags ?? []).map((tag) => (
+                        {(item.tags.slice(0, Math.min(item.tags.length, 6)) ?? []).map((tag) => (
                             <Badge key={tag}>{tag}</Badge>
                         ))}
                     </div>

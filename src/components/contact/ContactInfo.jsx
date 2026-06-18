@@ -1,11 +1,14 @@
 import { Icon } from '@iconify/react';
 
-const socials = [
-    { icon: 'mynaui:facebook', href: '#', label: 'Facebook' },
-    { icon: 'mynaui:instagram', href: '#', label: 'Instagram' },
-    { icon: 'mynaui:x-twitter', href: '#', label: 'X' },
-    { icon: 'mdi:whatsapp', href: '#', label: 'WhatsApp' },
-    { icon: 'mynaui:linkedin', href: '#', label: 'LinkedIn' },
+export const email = 'support@xeron.tech';
+
+export const socials = [
+    // { icon: 'mynaui:facebook', href: '#', label: 'Facebook' },
+    // { icon: 'mynaui:instagram', href: '#', label: 'Instagram' },
+    // { icon: 'mynaui:x-twitter', href: '#', label: 'X' },
+    // { icon: 'mdi:whatsapp', href: '#', label: 'WhatsApp' },
+    { label: 'Email', href: `mailto:${email}`, icon: 'mynaui:mail' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/xeron-tech', icon: 'mynaui:linkedin' },
 ];
 
 // Single-line string — prevents SSR/client whitespace normalization mismatch
@@ -34,14 +37,14 @@ export default function ContactInfo() {
                 </div>
                 <div className="flex flex-col gap-4">
                     <span className="type-contact-heading">Email</span>
-                    <a href="mailto:Youssef@xeron.com" className="type-link-inline">
-                        Youssef@xeron.com
+                    <a href={`mailto:${email}`} className="type-link-inline">
+                        {email}
                     </a>
                 </div>
             </div>
 
             {/* Phone */}
-            <div className="flex items-start gap-4">
+            {/* <div className="flex items-start gap-4">
                 <div className="mt-0.5 text-content-secondary">
                     <Icon icon="mynaui:telephone-call" className="w-6 h-6" />
                 </div>
@@ -51,7 +54,7 @@ export default function ContactInfo() {
                         +201063361951
                     </a>
                 </div>
-            </div>
+            </div> */}
 
             {/* Get In Touch */}
             <div className="flex flex-col gap-3">

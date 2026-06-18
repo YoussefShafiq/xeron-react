@@ -1,16 +1,12 @@
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { NAV_LINKS } from '@/lib/constants.js';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { socials } from '../contact/ContactInfo.jsx';
 
 const navLinks = NAV_LINKS;
 
-const socials = [
-    { icon: 'mynaui:facebook', href: '#', label: 'Facebook' },
-    { icon: 'mynaui:instagram', href: '#', label: 'Instagram' },
-    { icon: 'mynaui:x-twitter', href: '#', label: 'X' },
-    { icon: 'mynaui:linkedin', href: '#', label: 'LinkedIn' },
-    { icon: 'mynaui:github', href: '#', label: 'Github' },
-];
+;
 
 function GradientBorderIcon({ icon, href, label }) {
     return (
@@ -29,7 +25,7 @@ function GradientBorderIcon({ icon, href, label }) {
 
 export default function Footer() {
     return (
-        <footer className="pt-12 md:pt-16 pb-6 md:pb-8">
+        <ScrollReveal as="footer" className="pt-12 md:pt-16 pb-6 md:pb-8">
             <div className="max-w-6xl mx-auto px-4 md:px-6 flex flex-col items-center">
 
                 <Link to="/" className="flex items-center mb-8 md:mb-10 opacity-80">
@@ -61,6 +57,6 @@ export default function Footer() {
                 </p>
 
             </div>
-        </footer>
+        </ScrollReveal>
     );
 }

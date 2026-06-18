@@ -1,6 +1,7 @@
 import SectionHeader from '@/components/ui/SectionHeader';
 import PortfolioCard from '@/components/portfolio/PortfolioCard';
 import Button from '@/components/ui/Button';
+import { ScrollReveal, StaggerReveal, StaggerItem } from '@/components/ui/ScrollReveal';
 
 export default function PortfolioSection({ portfolios = [] }) {
     const preview = portfolios.slice(0, 3);
@@ -14,15 +15,17 @@ export default function PortfolioSection({ portfolios = [] }) {
                     centered
                 />
 
-                <div className="mt-16 grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+                <StaggerReveal className="mt-16 grid lg:grid-cols-3 md:grid-cols-2 gap-6">
                     {preview.map((item) => (
-                        <PortfolioCard key={item.slug} item={item} variant="portfolio" />
+                        <StaggerItem key={item.slug}>
+                            <PortfolioCard item={item} variant="portfolio" />
+                        </StaggerItem>
                     ))}
-                </div>
+                </StaggerReveal>
 
-                <div className="flex justify-center mt-12">
+                <ScrollReveal className="flex justify-center mt-12">
                     <Button href="/portfolio" variant="primary">See more</Button>
-                </div>
+                </ScrollReveal>
             </div>
         </section>
     );

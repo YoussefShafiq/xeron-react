@@ -1,6 +1,7 @@
 import SectionHeader from '@/components/ui/SectionHeader';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactInfo from '@/components/contact/ContactInfo';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 export default function ContactPage() {
     return (
@@ -15,18 +16,18 @@ export default function ContactPage() {
 
                 <div className="mt-16 flex flex-col md:flex-row items-start gap-10">
 
-                    <div className="relative flex-[1.4] gradient-border-shell gradient-border-shell--bl rounded-2xl">
+                    <ScrollReveal direction="left" className="relative flex-[1.4] gradient-border-shell gradient-border-shell--bl rounded-2xl">
                         <div
                             className="rounded-2xl bg-linear-to-br from-purple-950 to-purple-1000"
                             style={{ padding: '40px 56px' }}
                         >
                             <ContactForm />
                         </div>
-                    </div>
+                    </ScrollReveal>
 
-                    <div className="flex-1 pt-2">
+                    <ScrollReveal direction="right" delay={0.12} className="flex-1 pt-2">
                         <ContactInfo />
-                    </div>
+                    </ScrollReveal>
 
                 </div>
             </div>

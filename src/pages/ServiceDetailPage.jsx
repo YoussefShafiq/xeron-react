@@ -6,6 +6,7 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import ServiceDetailSkeleton from '@/components/skeletons/ServiceDetailSkeleton';
 import NotFoundPage from '@/pages/NotFoundPage';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { useEffect, useRef, useState } from 'react';
 
 const SCROLL_MARGIN_PX = 112;
@@ -152,7 +153,7 @@ export default function ServiceDetailPage() {
         <div className="pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
             <div className="max-w-7xl mt-16 md:mt-32 lg:mt-24 mx-auto">
 
-                <div className="text-center mb-12 md:mb-20">
+                <ScrollReveal className="text-center mb-12 md:mb-20">
                     <h1 className="type-page-title mb-4 leading-tight">
                         {service.title}
                     </h1>
@@ -164,7 +165,7 @@ export default function ServiceDetailPage() {
                             <Badge key={tag}>{tag}</Badge>
                         ))}
                     </div>
-                </div>
+                </ScrollReveal>
 
                 <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
@@ -220,6 +221,7 @@ export default function ServiceDetailPage() {
                                         style={{ scrollMarginTop: SCROLL_MARGIN_PX }}
                                         className={`px-6 py-8 md:px-10 md:py-12 ${!isLast ? 'border-b border-purple-50/20' : ''}`}
                                     >
+                                        <ScrollReveal>
                                         <h2 className="type-heading tracking-tight mb-5">
                                             {heading}
                                         </h2>
@@ -288,6 +290,7 @@ export default function ServiceDetailPage() {
                                                 )}
                                             </>
                                         )}
+                                        </ScrollReveal>
                                     </div>
                                 );
                             })}

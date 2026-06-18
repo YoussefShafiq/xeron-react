@@ -1,6 +1,7 @@
 import SectionHeader from '@/components/ui/SectionHeader';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactInfo from '@/components/contact/ContactInfo';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 const borderShellClass =
     'relative flex-[1.4] gradient-border-shell gradient-border-shell--bl rounded-2xl';
@@ -19,17 +20,15 @@ export default function ContactSection() {
 
                 <div className="mt-16 flex flex-col md:flex-row items-start gap-10">
 
-                    {/* Left — form card */}
-                    <div className={borderShellClass}>
+                    <ScrollReveal direction="left" className={borderShellClass}>
                         <div className={innerCardClass}>
                             <ContactForm />
                         </div>
-                    </div>
+                    </ScrollReveal>
 
-                    {/* Right — contact info */}
-                    <div className="flex-1 pt-2">
+                    <ScrollReveal direction="right" delay={0.12} className="flex-1 pt-2">
                         <ContactInfo />
-                    </div>
+                    </ScrollReveal>
 
                 </div>
             </div>

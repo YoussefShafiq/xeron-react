@@ -1,5 +1,6 @@
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 export default function SectionHeader({
     title,
@@ -10,7 +11,7 @@ export default function SectionHeader({
 }) {
     const tagList = Array.isArray(tags) ? tags : [];
     return (
-        <div
+        <ScrollReveal
             className={`max-w-7xl mb-[40px] md:mb-[56px] ${centered ? 'text-center mx-auto' : ''
                 }`}
         >
@@ -42,6 +43,6 @@ export default function SectionHeader({
                     </Button>
                 </div>
             )}
-        </div>
+        </ScrollReveal>
     );
 }

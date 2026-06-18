@@ -1,6 +1,7 @@
 import SectionHeader from '@/components/ui/SectionHeader';
 import ServiceCard from '@/components/services/ServiceCard';
 import ServiceCardSkeleton from '@/components/skeletons/ServiceCardSkeleton';
+import { StaggerReveal, StaggerItem } from '@/components/ui/ScrollReveal';
 import { useState, useEffect } from 'react';
 import { fetchServiceList } from '@/lib/serviceApi';
 
@@ -37,13 +38,21 @@ export default function ServicesPage() {
                     subtitle="Everything your startup needs to build, launch, and grow — under one roof."
                     centered
                 />
-                <div className="mt-12 md:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                    {loading
-                        ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
-                              <ServiceCardSkeleton key={i} />
-                          ))
-                        : services.map((s) => <ServiceCard key={s.slug} service={s} />)}
-                </div>
+                {loading ? (
+                    <div className="mt-12 md:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                        {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+                            <ServiceCardSkeleton key={i} />
+                        ))}
+                    </div>
+                ) : (
+                    <StaggerReveal className="mt-12 md:mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                        {services.map((s) => (
+                            <StaggerItem key={s.slug}>
+                                <ServiceCard service={s} />
+                            </StaggerItem>
+                        ))}
+                    </StaggerReveal>
+                )}
             </div>
         </div>
     );

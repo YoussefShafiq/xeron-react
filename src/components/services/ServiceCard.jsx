@@ -30,7 +30,7 @@ export default function ServiceCard({ service }) {
         <article
             className="
             gradient-border-shell rounded-2xl
-            group relative
+            group relative h-full
             transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl
         "
         >
@@ -72,7 +72,7 @@ export default function ServiceCard({ service }) {
                     <Link
                         to={`/services/${service.slug}`}
                         className="
-                        mt-8 type-caption font-medium
+                        mt-auto pt-8 type-caption font-medium
                         text-purple-50 transition-colors duration-200
                         hover:text-white
                     "

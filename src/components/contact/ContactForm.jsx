@@ -209,7 +209,7 @@ export default function ContactForm() {
             <div className="flex flex-col gap-4">
                 <label className="type-form-label">Phone number</label>
                 <div className="flex gap-6">
-                    <div className="flex flex-col gap-4 w-15">
+                    <div className="flex flex-col gap-4 w-20">
                         <GradientInput
                             type="text"
                             name="phonePrefix"

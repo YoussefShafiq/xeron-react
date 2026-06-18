@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Button from '@/components/ui/Button';
 import SectionHeader from '@/components/ui/SectionHeader';
 import NotFoundPage from '@/pages/NotFoundPage';
+import { ScrollReveal, StaggerReveal, StaggerItem } from '@/components/ui/ScrollReveal';
 import { fetchPortfolioBySlug } from '@/lib/portfolioApi';
 import { resolveImageUrl } from '@/lib/resolveImageUrl';
 
@@ -48,8 +49,9 @@ export default function PortfolioDetailPage() {
 
     const processSteps = Array.isArray(item.processSteps) ? item.processSteps : [];
 
-    const problemImgSrc = resolveImageUrl(item.images?.[0] || item.image);
-    const solutionImgSrc = resolveImageUrl(item.images?.[1] || item.image);
+    const problemImgSrc = '/ImagePlaceholder.png';
+    const solutionImgSrc = '/ImagePlaceholder.png';
+    const demoUrl = item.demo_url || item.demoUrl;
 
     return (
         <div className="pt-32 pb-20 px-6">
@@ -61,23 +63,25 @@ export default function PortfolioDetailPage() {
                         subtitle={item.subtitle || item.description}
                         tags={Array.isArray(item.tags) ? item.tags : []}
                         centered
-                        href={item.demoUrl}
+                        href={demoUrl}
                     />
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px] md:gap-[56px] lg:gap-[80px] items-stretch mb-20">
 
-                    <div className="col-span-1 order-1 lg:order-0 gradient-border-shell gradient-border-shell--glow rounded-[20px] w-full max-w-full mx-auto lg:max-w-none">
-                        <div className="relative w-full h-full aspect-16/10 md:aspect-video min-h-[220px] md:min-h-[320px] rounded-[16px] overflow-hidden bg-white">
-                            <img
-                                src={problemImgSrc}
-                                alt={`${item.title} — problem`}
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
+                    <ScrollReveal direction="left" className="col-span-1 order-1 lg:order-0">
+                        <div className="gradient-border-shell gradient-border-shell--glow rounded-[20px] w-full max-w-full mx-auto lg:max-w-none">
+                            <div className="relative w-full h-full aspect-16/10 md:aspect-video min-h-[220px] md:min-h-[320px] rounded-[16px] overflow-hidden bg-white">
+                                <img
+                                    src={problemImgSrc}
+                                    alt={`${item.title} — problem`}
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
                         </div>
-                    </div>
+                    </ScrollReveal>
 
-                    <div className="col-span-1 lg:col-span-2 order-2 lg:order-0 flex flex-col gap-[28px] md:gap-[32px]">
+                    <ScrollReveal direction="right" delay={0.1} className="col-span-1 lg:col-span-2 order-2 lg:order-0 flex flex-col gap-[28px] md:gap-[32px]">
                         <h2 className="type-heading">
                             The Problem Statement
                         </h2>
@@ -86,12 +90,12 @@ export default function PortfolioDetailPage() {
                                 {para}
                             </p>
                         ))}
-                    </div>
+                    </ScrollReveal>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px] md:gap-[56px] lg:gap-[80px] items-stretch mb-24">
 
-                    <div className="col-span-1 lg:col-span-2 order-2 lg:order-0 flex flex-col gap-[28px] md:gap-[32px]">
+                    <ScrollReveal direction="left" delay={0.1} className="col-span-1 lg:col-span-2 order-2 lg:order-0 flex flex-col gap-[28px] md:gap-[32px]">
                         <h2 className="type-heading">
                             The Solution
                         </h2>
@@ -100,59 +104,62 @@ export default function PortfolioDetailPage() {
                                 {para}
                             </p>
                         ))}
-                    </div>
+                    </ScrollReveal>
 
-                    <div className="col-span-1 order-1 lg:order-0 gradient-border-shell gradient-border-shell--glow rounded-[20px] w-full max-w-full mx-auto lg:max-w-none">
-                        <div className="relative w-full h-full aspect-16/10 md:aspect-video min-h-[220px] md:min-h-[320px] rounded-[16px] overflow-hidden bg-white">
-                            <img
-                                src={solutionImgSrc}
-                                alt={`${item.title} — solution`}
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
+                    <ScrollReveal direction="right" className="col-span-1 order-1 lg:order-0">
+                        <div className="gradient-border-shell gradient-border-shell--glow rounded-[20px] w-full max-w-full mx-auto lg:max-w-none">
+                            <div className="relative w-full h-full aspect-16/10 md:aspect-video min-h-[220px] md:min-h-[320px] rounded-[16px] overflow-hidden bg-white">
+                                <img
+                                    src={solutionImgSrc}
+                                    alt={`${item.title} — solution`}
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
                         </div>
-                    </div>
+                    </ScrollReveal>
                 </div>
 
-                <div>
-                    <div className="text-center mb-12">
+                <div hidden={processSteps.length === 0}>
+                    <ScrollReveal className="text-center mb-12">
                         <h2 className="type-process-banner">
                             Gallery
                         </h2>
-                    </div>
+                    </ScrollReveal>
 
-                    <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 mb-20">
+                    <StaggerReveal className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 mb-20">
                         {processSteps.map((step, i) => (
-                            <div
-                                key={`${step.slug}-${i}`}
-                                className="group"
-                            >
-                                <div className="relative gradient-border-shell gradient-border-shell--glow rounded-[20px] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-                                    <div className="relative w-full aspect-4/3 rounded-[16px] overflow-hidden bg-white">
+                            <StaggerItem key={`${step.slug}-${i}`}>
+                                <div className="group">
+                                    <div className="relative gradient-border-shell gradient-border-shell--glow rounded-[20px] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                                        <div className="relative w-full aspect-4/3 rounded-[16px] overflow-hidden bg-white">
 
-                                        <img
-                                            src={resolveImageUrl(step.image || item.image)}
-                                            alt={`${item.title} — ${step.name}`}
-                                            className="absolute inset-0 w-full h-full object-cover"
-                                        />
+                                            <img
+                                                src={resolveImageUrl(step.image || item.image)}
+                                                alt={`${item.title} — ${step.name}`}
+                                                className="absolute inset-0 w-full h-full object-cover"
+                                            />
 
-                                        <div className="absolute inset-0 bg-linear-to-b from-transparent to-purple-1000/80 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 flex items-end p-1.5 sm:p-2 md:p-4">
-                                            <div className="w-full text-purple-50">
-                                                <h3 className="type-process-step-thumb text-purple-50">
-                                                    {step.name}
-                                                </h3>
+                                            <div className="absolute inset-0 bg-linear-to-b from-transparent to-purple-1000/80 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 flex items-end p-1.5 sm:p-2 md:p-4">
+                                                <div className="w-full text-purple-50">
+                                                    <h3 className="type-process-step-thumb text-purple-50">
+                                                        {step.name}
+                                                    </h3>
+                                                </div>
                                             </div>
-                                        </div>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </StaggerItem>
                         ))}
-                    </div>
+                    </StaggerReveal>
                 </div>
 
-                <Button href="/portfolio" variant="outline">
-                    ← Back to Portfolio
-                </Button>
+                <ScrollReveal>
+                    <Button href="/portfolio" variant="outline">
+                        ← Back to Portfolio
+                    </Button>
+                </ScrollReveal>
 
             </div>
         </div>

@@ -1,5 +1,6 @@
 import Button from '@/components/ui/Button';
 import SectionHeader from '@/components/ui/SectionHeader';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 export default function WhoWeAreSection() {
     return (
@@ -9,17 +10,19 @@ export default function WhoWeAreSection() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px] md:gap-[56px] lg:gap-[80px] items-stretch">
 
-                    <div className="col-span-1 gradient-border-shell gradient-border-shell--glow rounded-[20px] w-full mx-auto lg:max-w-none">
-                        <div className="relative w-full h-full aspect-16/10 md:aspect-video min-h-[220px] md:min-h-[320px] rounded-[16px] overflow-hidden bg-white">
-                            <img
-                                src="/ImagePlaceholder.png"
-                                alt="Who We Are"
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
+                    <ScrollReveal direction="left" className="col-span-1">
+                        <div className="gradient-border-shell gradient-border-shell--glow rounded-[20px] w-full mx-auto lg:max-w-none">
+                            <div className="relative w-full h-full aspect-16/10 md:aspect-video min-h-[220px] md:min-h-[320px] rounded-[16px] overflow-hidden bg-white">
+                                <img
+                                    src="/ImagePlaceholder.png"
+                                    alt="Who We Are"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
                         </div>
-                    </div>
+                    </ScrollReveal>
 
-                    <div className="col-span-1 lg:col-span-2 flex flex-col gap-[28px] md:gap-[40px] lg:gap-[64px]">
+                    <ScrollReveal direction="right" delay={0.1} className="col-span-1 lg:col-span-2 flex flex-col gap-[28px] md:gap-[40px] lg:gap-[64px]">
                         <h3 className="type-emphasis-title">
                             The Minds Behind XERON
                         </h3>
@@ -36,7 +39,7 @@ export default function WhoWeAreSection() {
                         <div className="mt-[8px] md:mt-[16px] lg:mt-[24px]">
                             <Button href="/about" variant="primary" arrow>Who We Are</Button>
                         </div>
-                    </div>
+                    </ScrollReveal>
                 </div>
             </div>
         </section>

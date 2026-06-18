@@ -1,4 +1,5 @@
 import PortfolioCard from './PortfolioCard';
+import { StaggerReveal, StaggerItem } from '@/components/ui/ScrollReveal';
 
 /**
  * PortfolioGrid — pass `items` from fetchPortfolioList() (or a slice).
@@ -9,10 +10,12 @@ export default function PortfolioGrid({ items = [], preview = false, variant = '
     const list = preview ? items.slice(0, 4) : items;
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <StaggerReveal className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {list.map((item) => (
-                <PortfolioCard key={item.slug} item={item} variant={variant} />
+                <StaggerItem key={item.slug}>
+                    <PortfolioCard item={item} variant={variant} />
+                </StaggerItem>
             ))}
-        </div>
+        </StaggerReveal>
     );
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import PortfolioCard from '@/components/portfolio/PortfolioCard';
 import PortfolioCardSkeleton from '@/components/skeletons/PortfolioCardSkeleton';
+import { StaggerReveal, StaggerItem } from '@/components/ui/ScrollReveal';
 import { fetchPortfolioList } from '@/lib/portfolioApi';
 
 export default function PortfolioPage() {
@@ -34,15 +35,21 @@ export default function PortfolioPage() {
                     subtitle="Real projects. Real impact. Built for people who think bigger."
                     centered
                 />
-                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                    {loading
-                        ? Array.from({ length: 6 }).map((_, i) => (
-                              <PortfolioCardSkeleton key={i} variant="portfolio" />
-                          ))
-                        : portfolio.map((item) => (
-                              <PortfolioCard key={item.slug} item={item} variant="portfolio" />
-                          ))}
-                </div>
+                {loading ? (
+                    <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                        {Array.from({ length: 6 }).map((_, i) => (
+                            <PortfolioCardSkeleton key={i} variant="portfolio" />
+                        ))}
+                    </div>
+                ) : (
+                    <StaggerReveal className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                        {portfolio.map((item) => (
+                            <StaggerItem key={item.slug}>
+                                <PortfolioCard item={item} variant="portfolio" />
+                            </StaggerItem>
+                        ))}
+                    </StaggerReveal>
+                )}
             </div>
         </div>
     );
